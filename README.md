@@ -1,57 +1,49 @@
 # 🧮 calc • Alex Lazar
 
-**A clean, modern web calculator** built while learning JavaScript. Features a sleek dark design, smooth button animations, keyboard support, and all the basic operations you'd expect.
+**A clean, modern web calculator** built while learning JavaScript. It has a sleek dark design, smooth button animations, keyboard support, and works really well.
 
-Simple, functional, and something I'm actually proud to show people.
+---
 
 ## 🛠 Technologies
 
 - HTML5
-- CSS3 (Tailwind CSS)
+- Tailwind CSS
 - Vanilla JavaScript
-- Google Fonts (Inter + Space Grotesk)
 
 ## ✨ Features
 
-- All basic operations: +, −, ×, ÷
+- Basic operations: +, −, ×, ÷
 - Decimal support and percentage calculations
 - Plus/minus toggle
-- AC (clear all) and keyboard support
+- AC (clear all)
+- Keyboard support (numbers, operators, Enter, Backspace, Escape)
 - Smooth press animations and hover effects
-- Clean, responsive dark UI
-- Error handling (like divide by zero)
+- Clean responsive dark theme
 
 ## 📝 The Process
 
-I've been working through freeCodeCamp's Responsive Web Design course and wanted to build something practical with JavaScript. Most calculator tutorials online are either super basic or overly complicated, so I decided to make my own version.
+I'm going through freeCodeCamp’s Responsive Web Design course and wanted to build something practical with JavaScript. Most calculator projects online are either too basic or way too complicated, so I made my own version.
 
-I focused on making the interface feel nice and polished — something that actually looks good and works smoothly. It took me a few evenings of trial and error (especially the keyboard support and state management), but I'm really happy with how it turned out.
-
-This project helped me better understand DOM manipulation, event handling, and keeping track of application state — important skills I'm building for university applications.
+I focused on making it look nice and feel good to use. Spent quite a bit of time getting the logic right and adding keyboard support. I'm pretty happy with how it turned out.
 
 ## 🚀 Running the Project
 
-Since it's a single HTML file, you have two easy options:
+**Option 1: Open locally** (easiest)  
+Just download the repo and open `index.html` in your browser.
 
-### Option 1: Open directly (easiest)
-1. Download or clone the repository
-2. Open `index.html` in your browser
-
-### Option 2: Using GitHub Pages (recommended)
-Just visit the live demo:  
-**[https://YOUR-USERNAME.github.io/calculator]([https://YOUR-USERNAME.github.io/calculator](https://fabulous-cannoli-053b08.netlify.app/))**
-
-*(Replace YOUR-USERNAME with your actual GitHub username)*
+**Option 2: Live Demo**  
+- GitHub Pages: https://alexlazar123.github.io/Project-1-Functional-Web-Calculator/  
+- Netlify: [https://fabulous-cannoli-053b08.netlify.app/](https://fabulous-cannoli-053b08.netlify.app/)
 
 ## 📸 Preview
 
-![Calculator Preview](https://via.placeholder.com/800x500/18181b/22c55e?text=Calculator+Screenshot)
+![Calculator Preview](./preview.png)
 
-*(Replace the link above with a real screenshot after you upload one to your repo)*
+*(Change the filename if you named your screenshot something different)*
 
 ---
 
 **Made by Alex Lazar** — 19-year-old self-taught developer from the UK.  
 Currently learning web development and preparing for Computer Science / Software Engineering university applications.
 
-Feel free to fork it, improve it, or use it as inspiration for your own projects!
+Feel free to fork it or use it as inspiration for your own projects!
