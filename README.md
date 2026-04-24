@@ -1,52 +1,237 @@
-# 🧮 calc • Alex Lazar
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc • Alex Lazar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
 
-**A clean, modern web calculator** built while learning JavaScript. Features a sleek dark design, smooth button animations, keyboard support, and all the basic operations you'd expect.
+        .key {
+            transition: all 0.1s ease;
+        }
+        
+        .key:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 min-h-screen flex items-center justify-center p-6">
+    <div class="w-full max-w-[380px]">
+        
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center text-xl font-bold text-black">C</div>
+                <div>
+                    <h1 class="text-4xl font-semibold tracking-tighter text-white">calc</h1>
+                    <p class="text-emerald-400 text-sm">Alex Lazar</p>
+                </div>
+            </div>
+        </div>
 
-Simple, functional, and something I'm actually proud to show people.
+        <div class="bg-zinc-900 rounded-3xl p-5 shadow-2xl border border-zinc-700">
+            
+            <!-- Screen -->
+            <div class="bg-zinc-950 rounded-2xl p-6 mb-6 text-right border border-zinc-800">
+                <div id="history" class="text-emerald-400/70 text-sm h-6 overflow-hidden"></div>
+                <div id="screen" class="display text-6xl font-semibold text-white tracking-[-2px] min-h-[78px] flex items-end justify-end">0</div>
+            </div>
 
-## 🛠 Technologies
+            <!-- Buttons -->
+            <div class="grid grid-cols-4 gap-3 text-xl">
+                
+                <button onclick="press('clear')" class="key bg-zinc-800 hover:bg-zinc-700 text-emerald-400 font-medium rounded-2xl py-6">AC</button>
+                <button onclick="press('negate')" class="key bg-zinc-800 hover:bg-zinc-700 text-emerald-400 font-medium rounded-2xl py-6">±</button>
+                <button onclick="press('percent')" class="key bg-zinc-800 hover:bg-zinc-700 text-emerald-400 font-medium rounded-2xl py-6">%</button>
+                <button onclick="press('/')" class="key bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-2xl py-6">÷</button>
+                
+                <button onclick="press('7')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">7</button>
+                <button onclick="press('8')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">8</button>
+                <button onclick="press('9')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">9</button>
+                <button onclick="press('*')" class="key bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-2xl py-6">×</button>
+                
+                <button onclick="press('4')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">4</button>
+                <button onclick="press('5')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">5</button>
+                <button onclick="press('6')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">6</button>
+                <button onclick="press('-')" class="key bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-2xl py-6">−</button>
+                
+                <button onclick="press('1')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">1</button>
+                <button onclick="press('2')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">2</button>
+                <button onclick="press('3')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">3</button>
+                <button onclick="press('+')" class="key bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-2xl py-6">+</button>
+                
+                <button onclick="press('0')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6 col-span-2">0</button>
+                <button onclick="press('.')" class="key bg-zinc-800 hover:bg-zinc-700 rounded-2xl py-6">.</button>
+                <button onclick="press('equals')" class="key bg-emerald-500 hover:bg-emerald-600 text-black font-semibold rounded-2xl py-6">=</button>
+                
+            </div>
+        </div>
 
-- HTML5
-- CSS3 (Tailwind CSS)
-- Vanilla JavaScript
-- Google Fonts (Inter + Space Grotesk)
+        <div class="text-center text-zinc-500 text-xs mt-8">
+            Made by Alex Lazar
+        </div>
+    </div>
 
-## ✨ Features
+    <script>
+        // variables for my calculator
+        let current = "0";
+        let previous = "";
+        let op = null;
+        let resetNext = false;
 
-- All basic operations: +, −, ×, ÷
-- Decimal support and percentage calculations
-- Plus/minus toggle
-- AC (clear all) and keyboard support
-- Smooth press animations and hover effects
-- Clean, responsive dark UI
-- Error handling (like divide by zero)
+        const screenEl = document.getElementById("screen");
+        const historyEl = document.getElementById("history");
 
-## 📝 The Process
+        function updateScreen() {
+            screenEl.textContent = current;
+        }
 
-I've been working through freeCodeCamp's Responsive Web Design course and wanted to build something practical with JavaScript. Most calculator tutorials online are either super basic or overly complicated, so I decided to make my own version.
+        function press(btn) {
+            // numbers
+            if (["1","2","3","4","5","6","7","8","9","0"].includes(btn)) {
+                if (resetNext) {
+                    current = btn;
+                    resetNext = false;
+                } else {
+                    current = current === "0" ? btn : current + btn;
+                }
+            } 
+            // decimal
+            else if (btn === ".") {
+                if (resetNext) {
+                    current = "0.";
+                    resetNext = false;
+                } else if (!current.includes(".")) {
+                    current = current + ".";
+                }
+            } 
+            // operators
+            else if (["+", "-", "*", "/"].includes(btn)) {
+                handleOp(btn);
+            } 
+            else if (btn === "equals") {
+                calculateResult();
+            } 
+            else if (btn === "clear") {
+                clearCalculator();
+            } 
+            else if (btn === "negate") {
+                if (current !== "0") {
+                    current = String(parseFloat(current) * -1);
+                }
+            } 
+            else if (btn === "percent") {
+                current = String(parseFloat(current) / 100);
+            }
+            
+            updateScreen();
+        }
 
-I focused on making the interface feel nice and polished — something that actually looks good and works smoothly. It took me a few evenings of trial and error (especially the keyboard support and state management), but I'm really happy with how it turned out.
+        function handleOp(nextOp) {
+            const num = parseFloat(current);
+            
+            if (op !== null && resetNext) {
+                op = nextOp;
+                updateHistoryDisplay();
+                return;
+            }
+            
+            if (previous === "") {
+                previous = num;
+            } else if (op) {
+                const answer = doCalculation(previous, num, op);
+                current = String(answer);
+                previous = answer;
+            }
+            
+            resetNext = true;
+            op = nextOp;
+            updateHistoryDisplay();
+        }
 
-This project helped me better understand DOM manipulation, event handling, and keeping track of application state — important skills I'm building for university applications.
+        function doCalculation(a, b, operator) {
+            if (operator === "+") return a + b;
+            if (operator === "-") return a - b;
+            if (operator === "*") return a * b;
+            if (operator === "/") {
+                if (b === 0) {
+                    alert("can't divide by zero mate");
+                    clearCalculator();
+                    return 0;
+                }
+                return a / b;
+            }
+            return b;
+        }
 
-## 🚀 Running the Project
+        function calculateResult() {
+            if (op === null) return;
+            
+            let result = doCalculation(parseFloat(previous), parseFloat(current), op);
+            current = String(result);
+            op = null;
+            previous = "";
+            resetNext = true;
+            historyEl.textContent = "";
+        }
 
-Since it's a single HTML file, you have two easy options:
+        function clearCalculator() {
+            current = "0";
+            previous = "";
+            op = null;
+            resetNext = false;
+            historyEl.textContent = "";
+        }
 
-### Option 1: Open directly (easiest)
-1. Download or clone the repository
-2. Open `index.html` in your browser
+        function updateHistoryDisplay() {
+            if (op) {
+                let symbol = op;
+                if (symbol === "*") symbol = "×";
+                if (symbol === "/") symbol = "÷";
+                historyEl.textContent = previous + " " + symbol;
+            }
+        }
 
-### Option 2: Using GitHub Pages (recommended)
-Just visit the live demo:  
-[file:///C:/Users/%60Alex/Desktop/New%20folder/Calculator.html](https://fabulous-cannoli-053b08.netlify.app/)](https://drive.google.com/file/d/1uv0E0pk80ru9IB8_-MgVdn0FQtIBW5Hp/view?usp=sharing)
+        // keyboard support (i spent way too long on this part lol)
+        document.addEventListener("keydown", function(e) {
+            if (e.key === "Enter" || e.key === "=") {
+                calculateResult();
+                updateScreen();
+            }
+            if (e.key === "Escape") {
+                clearCalculator();
+                updateScreen();
+            }
+            if (e.key === "Backspace") {
+                if (current.length > 1) {
+                    current = current.slice(0, -1);
+                } else {
+                    current = "0";
+                }
+                updateScreen();
+            }
+            
+            if ("0123456789".includes(e.key)) press(e.key);
+            if (e.key === ".") press(".");
+            if (e.key === "+") press("+");
+            if (e.key === "-") press("-");
+            if (e.key === "*") press("*");
+            if (e.key === "/") press("/");
+        });
 
-*(Replace YOUR-USERNAME with your actual GitHub username)*
-
-## 📸 Preview
-
-![Calculator Preview]([file:///C:/Users/%60Alex/Downloads/calc%20preview.png]([https://drive.google.com/file/d/1uv0E0pk80ru9IB8_-MgVdn0FQtIBW5Hp/view?usp=drive_link](https://drive.google.com/file/d/1uv0E0pk80ru9IB8_-MgVdn0FQtIBW5Hp/view?usp=sharing))
-
-*(Replace the link above with a real screenshot after you upload one to your repo)*
-
----
+        // init
+        updateScreen();
+        console.log("my calculator is ready");
+    </script>
+</body>
+</html>    
