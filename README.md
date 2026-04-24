@@ -39,7 +39,7 @@ Since it's a single HTML file, you have two easy options:
 
 ### Option 2: Using GitHub Pages (recommended)
 Just visit the live demo:  
-[file:///C:/Users/%60Alex/Desktop/New%20folder/Calculator.html](https://fabulous-cannoli-053b08.netlify.app/)
+[file:///C:/Users/%60Alex/Desktop/New%20folder/Calculator.html](https://fabulous-cannoli-053b08.netlify.app/)](https://drive.google.com/file/d/1uv0E0pk80ru9IB8_-MgVdn0FQtIBW5Hp/view?usp=sharing)
 
 *(Replace YOUR-USERNAME with your actual GitHub username)*
 
