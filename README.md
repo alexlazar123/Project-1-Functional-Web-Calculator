@@ -39,7 +39,7 @@ Since it's a single HTML file, you have two easy options:
 
 ### Option 2: Using GitHub Pages (recommended)
 Just visit the live demo:  
-**[https://YOUR-USERNAME.github.io/calculator](file:///C:/Users/%60Alex/Desktop/New%20folder/Calculator.html)**
+**(file:///C:/Users/%60Alex/Desktop/New%20folder/Calculator.html)**
 
 *(Replace YOUR-USERNAME with your actual GitHub username)*
 
