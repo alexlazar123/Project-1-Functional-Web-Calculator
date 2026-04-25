@@ -1,4 +1,4 @@
-# 🧮 calc • Alex Lazar
+# 🧮 Calculator
 
 **Modern web calculator**. It has a sleek dark design, smooth button animations and works really well.
 
