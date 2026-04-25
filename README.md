@@ -1,6 +1,6 @@
 # 🧮 calc • Alex Lazar
 
-**Modern web calculator** built while learning JavaScript. It has a sleek dark design, smooth button animations and works really well.
+**Modern web calculator**. It has a sleek dark design, smooth button animations and works really well.
 
 ---
 
