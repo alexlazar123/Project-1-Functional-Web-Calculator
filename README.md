@@ -29,7 +29,7 @@ The hardest part was getting the actual buttons working properly. I wanted it to
 
 ## 🚀 Running the Project
 
-To run the project,click the link below:
+To run the project click the link:
 [https://fabulous-cannoli-053b08.netlify.app/](https://fabulous-cannoli-053b08.netlify.app/)
 
 ## 📸 Preview
