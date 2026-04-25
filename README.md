@@ -29,7 +29,6 @@ The hardest part was getting the actual buttons working properly. I wanted it to
 
 ## 🚀 Running the Project
 
-**Option 1: Open locally** (easiest)  
 Click the link below to see the project.
 - Netlify: [https://fabulous-cannoli-053b08.netlify.app/](https://fabulous-cannoli-053b08.netlify.app/)
 
